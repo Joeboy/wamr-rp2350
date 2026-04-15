@@ -1,0 +1,24 @@
+[package]
+name = "wamr-rp2350-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+wamr-rp2350 = { git = "https://github.com/Joeboy/wamr-rp2350.git", branch = "main" }
+cortex-m-rt = "0.7"
+embassy-rp = { version = "0.10.0", features = ["defmt", "rp235xa", "critical-section-impl", "binary-info"] }
+defmt = "0.3"
+defmt-rtt = "0.4"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+[profile.dev]
+codegen-units = 1
+debug = 1
+incremental = false
+
+[profile.release]
+codegen-units = 1
+debug = 0
+lto = "fat"
+opt-level = "z"
